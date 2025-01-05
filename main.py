@@ -9,7 +9,6 @@ class Restaurant:
         self.root.title("Restaurant Management System")
         self.root.geometry("1200x650")  
 
-        # Add the title at the top
         self.add_title()
 
     def add_title(self):

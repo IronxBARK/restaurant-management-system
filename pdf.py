@@ -1,11 +1,16 @@
 from fpdf import FPDF
+from datetime import datetime
 
 class PDF(FPDF):
+    def __init__(self):
+        super().__init__()
+        self.date = datetime.now()  # Default to the current date
+
     def header(self):
         # Set font for header
         self.set_font('Arial', 'B', 15)
         # Add the date and restaurant name in the same line
-        self.cell(5, 10, '2024-12-20', align='L')  # Left-aligned Date
+        self.cell(5, 10, f"Date: {self.date.strftime('%Y-%m-%d')}", align='L')  # Left-aligned Date
         self.cell(180, 10, 'X Restaurant Ltd', align='C')  # Centered Restaurant Name
         self.ln(10)  # Line break
 
@@ -15,6 +20,7 @@ class PDF(FPDF):
         self.ln(5)  # Line break
         self.cell(0, 10, 'Contact no. - 1122334455', align='C')  # Contact Info
         self.ln(15)  # Two line breaks for spacing
+
 
     def add_customer_info(self, bill_number, customer_name, customer_contact):
         # Set font for customer info
